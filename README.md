@@ -2,6 +2,13 @@
 
 LangChain uses OpenAI's API and a modular architecture that enables developers to easily combine different components, such as pre-trained language models and data storage systems. With LangChain, you can build chatbots, automated writing assistants, and other natural language processing applications with ease.
 
+## LangChain Workflow: Collect, Vectorize, Model, Search
+
+- Step 1: Collect a large amount of job data, articles, code, and tweets, as well as any new articles you can find.
+- Step 2: Vectorize the data, create a model, train the model, test the model, and then deploy the model.
+- Step 3: Use machine learning to search the data using a language model.
+- Step 4: Ask the model questions about the data.
+
 # Start
 
 ```sh
@@ -51,6 +58,10 @@ source .env
 echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:5}..."
 # echo $OPENAI_API_KEY
 ```
+
+# Building a Language Model Application: LLMs
+
+---
 
 # Getting Started with "modular-abstraction/chains"
 
@@ -152,10 +163,3 @@ concat_chain = ConcatenateChain(chain_1=chain_1, chain_2=chain_2)
 concat_output = concat_chain.run("colorful socks")
 print(f"Concatenated output:\n{concat_output}")
 ```
-
-# LangChain Workflow: Collect, Vectorize, Model, Search
-
-- Step 1: Collect a large amount of job data, articles, code, and tweets, as well as any new articles you can find.
-- Step 2: Vectorize the data, create a model, train the model, test the model, and then deploy the model.
-- Step 3: Use machine learning to search the data using a language model.
-- Step 4: Ask the model questions about the data.
