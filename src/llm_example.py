@@ -1,16 +1,27 @@
+import os
+import openai
 from langchain.llms import OpenAI
 
-# Initialize the OpenAI LLM with a temperature of 0.9
+# Set up OpenAI API credentials
+openai.organization = "org-9PKnn7txwxhPDTNvTe3ZL164"
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Initialize the Langchain OpenAI LLM with a temperature of 0.9
 llm = OpenAI(temperature=0.9)
 
-# Generate a company name based on the input prompt
-text = "What would be a good company name for a company that makes colorful socks?"
-print(llm(text))
+# Prompt user for input
+text = input("Enter a prompt for a movie plot summary: ")
 
-# Generate a description for a product based on the input prompt
-text = "Write a short description of a smartwatch for a fitness enthusiast."
-print(llm(text))
+# Generate movie plot summary using Langchain OpenAI LLM
+generated_text = llm(text)
 
-# Generate a movie plot summary based on the input prompt
-text = "Write a plot summary for a movie about a group of friends on a road trip."
-print(llm(text))
+# Send generated text to OpenAI API to check for coherence
+response = openai.Completion.create(
+    engine="davinci",
+    prompt=generated_text,
+    max_tokens=100
+)
+
+# Print final movie plot summary
+print("\nMovie Plot Summary:\n" + "-" * 20)
+print(response.choices[0].text.strip())

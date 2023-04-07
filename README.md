@@ -9,35 +9,36 @@ LangChain uses OpenAI's API and a modular architecture that enables developers t
 - Step 3: Use machine learning to search the data using a language model.
 - Step 4: Ask the model questions about the data.
 
-# Start
+# Start OpenAI with Node.js
 
 ```sh
-pip install langchain
+
+npm install openai
+
+curl https://api.openai.com/v1/models \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "OpenAI-Organization: org-9PKnn7txwxhPDTNvTe3ZL164"
+
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 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" \
+  -d '{
+     "model": "gpt-3.5-turbo",
+     "messages": [{"role": "user", "content": "Say this is a test!"}],
+     "temperature": 0.7
+   }'
+```
+
+# Start OpenAI with Python
+
+```sh
 pip install openai
-export OPENAI_API_KEY="..."
-```
-
-or,
-
-```sh
-brew install langchain
-brew install openai
-export OPENAI_API_KEY="..."
-```
-
-```python
-import os
-os.environ["OPENAI_API_KEY"] = "..."
-# or,
-import os
-api_key = os.environ["OPENAI_API_KEY"]
-
 ```
 
 > Link to `/account/api-keys`: [Your API Key-here](https://platform.openai.com/account/api-keys)
 
 ```sh
-cd hello-langchain
+cd your_project_directory
 touch .env
 code .env
 ```
@@ -59,7 +60,90 @@ echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:5}..."
 # echo $OPENAI_API_KEY
 ```
 
+```sh
+python src/my_openai.py
+```
+
+# Start LangChain with Python
+
+````sh
+
+```sh
+pip install langchain
+export OPENAI_API_KEY="..."
+````
+
+or,
+
+```sh
+brew install langchain
+export OPENAI_API_KEY="..."
+```
+
+```python
+import os
+os.environ["OPENAI_API_KEY"] = "..."
+# or,
+import os
+api_key = os.environ["OPENAI_API_KEY"]
+```
+
+```sh
+npm install openai
+
+curl https://api.openai.com/v1/models \
+  -H "Authorization: Bearer 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" \
+  -H "OpenAI-Organization: org-9PKnn7txwxhPDTNvTe3ZL164"
+
+```
+
+```python
+import os
+import openai
+openai.organization = "org-9PKnn7txwxhPDTNvTe3ZL164"
+openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.Model.list()
+```
+
+```sh
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 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" \
+  -d '{
+     "model": "gpt-3.5-turbo",
+     "messages": [{"role": "user", "content": "Say this is a test!"}],
+     "temperature": 0.7
+   }'
+```
+
+---
+
 # Building a Language Model Application: LLMs
+
+```python
+# filename: openai_llm.py
+from langchain.llms import OpenAI
+llm = OpenAI(model_name="text-ada-001", n=2, best_of=2)
+
+llm("Tell me a joke")
+# '\n\nWhy did the chicken cross the road?\n\nTo get to the other side.'
+
+llm_result = llm.generate(["Tell me a joke", "Tell me a poem"]*15)
+
+len(llm_result.generations)
+30
+llm_result.generations[0]
+```
+
+```sh
+python openai_llm.py
+```
+
+> or, Hugging Face
+
+```sh
+pip install transformers
+```
 
 ---
 
