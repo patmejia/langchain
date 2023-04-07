@@ -29,7 +29,7 @@ curl https://api.openai.com/v1/chat/completions \
    }'
 ```
 
-# Start OpenAI with Python
+# Start OpenAi and LangChain with Python
 
 ```sh
 pip install openai
@@ -67,63 +67,14 @@ python src/llm_example.py
 
 ### The End
 
----
+# Acknowledgements
 
-# Roadmap, further steps:
-
-# Start LangChain with Python
-
-````sh
-
-```sh
-pip install langchain
-export OPENAI_API_KEY="..."
-````
-
-or,
-
-```sh
-brew install langchain
-export OPENAI_API_KEY="..."
-```
-
-```python
-import os
-os.environ["OPENAI_API_KEY"] = "..."
-# or,
-import os
-api_key = os.environ["OPENAI_API_KEY"]
-```
-
-```sh
-npm install openai
-
-curl https://api.openai.com/v1/models \
-  -H "Authorization: Bearer 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" \
-  -H "OpenAI-Organization: org-9PKnn7txwxhPDTNvTe3ZL164"
-
-```
-
-```python
-import os
-import openai
-openai.organization = "org-9PKnn7txwxhPDTNvTe3ZL164"
-openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.Model.list()
-```
-
-```sh
-curl https://api.openai.com/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer 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" \
-  -d '{
-     "model": "gpt-3.5-turbo",
-     "messages": [{"role": "user", "content": "Say this is a test!"}],
-     "temperature": 0.7
-   }'
-```
+- LangChain is inspired by [Hugging Face](https://huggingface.co/), [OpenAI](https://openai.com/), and [GPT-3](https://openai.com/blog/gpt-3-apps/).
+- OpenAI's [API](https://beta.openai.com/docs/api-reference/introduction) is used to generate text.
 
 ---
+
+wip...
 
 # Building a Language Model Application: LLMs
 
