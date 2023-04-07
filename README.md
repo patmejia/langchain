@@ -1,0 +1,157 @@
+# Start
+
+```sh
+pip install langchain
+pip install openai
+export OPENAI_API_KEY="..."
+```
+
+or,
+
+```sh
+brew install langchain
+brew install openai
+export OPENAI_API_KEY="..."
+```
+
+```python
+import os
+os.environ["OPENAI_API_KEY"] = "..."
+# or,
+import os
+api_key = os.environ["OPENAI_API_KEY"]
+
+```
+
+> Link to `/account/api-keys`: [Your API Key-here](https://platform.openai.com/account/api-keys)
+
+```sh
+cd hello-langchain
+touch .env
+code .env
+```
+
+```
+# filename: .env
+# This file contains environment variables for the OpenAI API key.
+
+OPENAI_API_KEY=YOUR_API_KEY_HERE
+```
+
+> Replace your_api_key_here with your actual API key from OpenAI.
+
+> Save and close the file.
+
+```sh
+source .env
+echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:5}..."
+# echo $OPENAI_API_KEY
+```
+
+# Getting Started with "modular-abstraction/chains"
+
+```python
+from langchain.prompts import PromptTemplate
+from langchain.llms import OpenAI
+
+llm = OpenAI(temperature=0.9)
+prompt = PromptTemplate(
+    input_variables=["product"],
+    template="What is a good name for a company that makes {product}?",
+)
+```
+
+```python
+from langchain.chains import LLMChain
+chain = LLMChain(llm=llm, prompt=prompt)
+
+# Run the chain only specifying the input variable.
+print(chain.run("colorful socks"))
+```
+
+```python
+from langchain.chat_models import ChatOpenAI
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+)
+human_message_prompt = HumanMessagePromptTemplate(
+        prompt=PromptTemplate(
+            template="What is a good name for a company that makes {product}?",
+            input_variables=["product"],
+        )
+    )
+chat_prompt_template = ChatPromptTemplate.from_messages([human_message_prompt])
+chat = ChatOpenAI(temperature=0.9)
+chain = LLMChain(llm=chat, prompt=chat_prompt_template)
+print(chain.run("colorful socks"))
+```
+
+```python
+second_prompt = PromptTemplate(
+    input_variables=["company_name"],
+    template="Write a catchphrase for the following company: {company_name}",
+)
+chain_two = LLMChain(llm=llm, prompt=second_prompt)
+```
+
+```python
+from langchain.chains import SimpleSequentialChain
+overall_chain = SimpleSequentialChain(chains=[chain, chain_two], verbose=True)
+
+# Run the chain specifying only the input variable for the first chain.
+catchphrase = overall_chain.run("colorful socks")
+print(catchphrase)
+```
+
+```python
+from langchain.chains import LLMChain
+from langchain.chains.base import Chain
+
+from typing import Dict, List
+
+
+class ConcatenateChain(Chain):
+    chain_1: LLMChain
+    chain_2: LLMChain
+
+    @property
+    def input_keys(self) -> List[str]:
+        # Union of the input keys of the two chains.
+        all_input_vars = set(self.chain_1.input_keys).union(set(self.chain_2.input_keys))
+        return list(all_input_vars)
+
+    @property
+    def output_keys(self) -> List[str]:
+        return ['concat_output']
+
+    def _call(self, inputs: Dict[str, str]) -> Dict[str, str]:
+        output_1 = self.chain_1.run(inputs)
+        output_2 = self.chain_2.run(inputs)
+        return {'concat_output': output_1 + output_2}
+```
+
+```python
+prompt_1 = PromptTemplate(
+    input_variables=["product"],
+    template="What is a good name for a company that makes {product}?",
+)
+chain_1 = LLMChain(llm=llm, prompt=prompt_1)
+
+prompt_2 = PromptTemplate(
+    input_variables=["product"],
+    template="What is a good slogan for a company that makes {product}?",
+)
+chain_2 = LLMChain(llm=llm, prompt=prompt_2)
+
+concat_chain = ConcatenateChain(chain_1=chain_1, chain_2=chain_2)
+concat_output = concat_chain.run("colorful socks")
+print(f"Concatenated output:\n{concat_output}")
+```
+
+# LangChain Workflow: Collect, Vectorize, Model, Search
+
+- Step 1: Collect a large amount of job data, articles, code, and tweets, as well as any new articles you can find.
+- Step 2: Vectorize the data, create a model, train the model, test the model, and then deploy the model.
+- Step 3: Use machine learning to search the data using a language model.
+- Step 4: Ask the model questions about the data.
