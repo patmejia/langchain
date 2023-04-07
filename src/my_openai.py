@@ -7,9 +7,9 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # Example1 : Get a list of available models
 # List available models
 models = openai.Model.list()
-# print("Available models:")
-# for model in models["data"]:
-#     print(model["id"])
+  print("Available models:")
+  for model in models["data"]:
+      print(model["id"])
 
 # Example2 : Get a list of available engines
 # Get joke from OpenAI API
