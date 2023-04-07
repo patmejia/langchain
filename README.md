@@ -62,7 +62,14 @@ echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:5}..."
 
 ```sh
 python src/my_openai.py
+python src/llm_example.py
 ```
+
+### The End
+
+---
+
+# Roadmap, further steps:
 
 # Start LangChain with Python
 
