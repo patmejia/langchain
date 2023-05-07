@@ -60,7 +60,10 @@ echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:5}..."
 # echo $OPENAI_API_KEY
 ```
 
+# Run
+
 ```sh
+conda activate langchain
 python src/my_openai.py
 python src/llm_example.py
 ```
