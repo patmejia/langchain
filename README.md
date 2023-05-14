@@ -1,4 +1,4 @@
-# Hello LangChain 🦜 🔗
+LangChain 🦜 🔗
 
 LangChain uses OpenAI's API and a modular architecture that enables developers to easily combine different components, such as pre-trained language models and data storage systems. With LangChain, you can build chatbots, automated writing assistants, and other natural language processing applications with ease.
 
