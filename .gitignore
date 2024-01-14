@@ -1,3 +1,4 @@
 .DS_Store
 .env
 src/__pycache__/openai.cpython-39.pyc
+development/
