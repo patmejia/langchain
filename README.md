@@ -80,6 +80,8 @@ conda activate langchain
 python src/my_openai.py
 # Run the llm_example.py script
 python src/llm_example.py
+# Run the langchain_examples.py script
+python src/langchain_examples.py
 ```
 
 
