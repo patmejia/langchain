@@ -2,7 +2,7 @@
 
 ## Overview
 
-LangChain utilizes OpenAI's API for developing NLP applications. It provides a modular architecture that streamlines the integration of pre-trained language models and data storage systems. This facilitates the creation of chatbots and automated writing assistants.
+LangChain has expanded its NLP application development capabilities by integrating with the Multion API. This integration enhances the functionality of LangChain when used in conjunction with the existing OpenAI API, particularly for the development of chatbots and automated writing assistants.
 
 For detailed information, visit: [LangChain Introduction](https://python.langchain.com/docs/get_started/introduction).
 
@@ -10,11 +10,11 @@ For detailed information, visit: [LangChain Introduction](https://python.langcha
 
 ## Workflow in LangChain
 
-1. **Data Acquisition**: Gather various types of data.
-2. **Data Processing**: Includes vectorization, model development, training, testing, and deployment.
-3. **Machine Learning Application**: Use machine learning for dataset queries.
-4. **Model Interaction**: Submit queries for responses.
-5. **Receive and Utilize Outputs**: Use the outputs received from the model.
+1. **Data Acquisition**: Collect a variety of data types.
+2. **Data Processing**: Process the data through vectorization, model development, training, testing, and deployment.
+3. **Machine Learning Application**: Employ machine learning techniques to query datasets.
+4. **Model Interaction**: Interact with the model by submitting queries and receiving responses.
+5. **Receive and Utilize Outputs**: Implement the outputs obtained from the model in your applications.
 
 ## Setup
 
@@ -46,9 +46,10 @@ pip install -r requirements.txt
 #### Script Execution
 
 ```bash
-# Run OpenAI and LangChain scripts
+# Run OpenAI, LangChain, and Multion scripts
 python3 src/my_openai.py
 python3 src/llm_example.py
+python3 src/multion_integration.py
 ```
 
 #### Simplified Single Command Execution
@@ -61,7 +62,8 @@ conda create --name langchain_env python=3.11 && \
 conda activate langchain_env && \
 pip install -r requirements.txt && \
 python3 src/my_openai.py && \
-python3 src/llm_example.py
+python3 src/llm_example.py && \
+python3 src/multion_integration.py
 ```
 
 ### Troubleshooting Tips
@@ -110,7 +112,13 @@ from langchain.chains import LLMChain
 
 # Initialize OpenAI and PromptTemplate
 llm = OpenAI(temperature=0
+```
 
 ## Acknowledgements
 
-LangChain draws inspiration from [Hugging Face](https://huggingface.co/), [OpenAI](https://openai.com/), and [GPT-3](https://openai.com/blog/gpt-3-apps/). It utilizes OpenAI's [API](https://beta.openai.com/docs/api-reference/introduction) for text generation.
+- [LangChain](https://python.langchain.com/)
+- [Hugging Face](https://huggingface.co/)
+- [OpenAI](https://openai.com/)
+- [GPT-3](https://openai.com/blog/gpt-3-apps/)
+- [Multion API](https://api.multion.ai/)
+- [OpenAI API](https://beta.openai.com/docs/api-reference/introduction)
