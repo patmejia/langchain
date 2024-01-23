@@ -1,26 +1,39 @@
+# Script for interacting with OpenAI API
+
 import os
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI, RateLimitError
 
-openai.organization = "org-9PKnn7txwxhPDTNvTe3ZL164"
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Initialize OpenAI client with API key
+def initialize_openai_client():
+    load_dotenv()
+    return OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Example1 : Get a list of available models
-# List available models
-models = openai.Model.list()
-print("Available models:")
-for model in models["data"]:
-    print(model["id"])
+# Function to display all available models from OpenAI
+def display_available_models(client):
+    models = client.models.list()
+    print("Available models:")
+    for model in models.data:
+        print(model.id)
 
+# Function to generate a joke using a specified OpenAI model
+def create_joke(client, model_name="gpt-3.5-turbo-0301"):
+    prompt = "Tell me a joke"
+    response = client.completions.create(model=model_name, prompt=prompt, max_tokens=100)
+    return response.choices[0].text.strip()
 
-# Example2 : Get a list of available engines
-# Get joke from OpenAI API
-prompt = "Tell me a joke"
-response = openai.Completion.create(
-    engine="davinci",
-    prompt=prompt,
-    max_tokens=100
-)
+# Main function to execute the script
+def main():
+    try:
+        client = initialize_openai_client()
+        display_available_models(client)
+        joke = create_joke(client)
+        print("\nJoke:\n" + "-" * 20)
+        print(joke)
 
-# Print joke
-print("\nJoke:\n" + "-" * 20)
-print(response.choices[0].text.strip())
+    except RateLimitError as e:
+        print("API quota exceeded. Please check your OpenAI usage and limits at https://platform.openai.com/usage")
+        print("Error message:", e)
+
+if __name__ == "__main__":
+    main()

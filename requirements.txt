@@ -1,0 +1,5 @@
+python-dotenv
+openai
+langchain-openai
+langchain-community
+multion
