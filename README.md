@@ -254,12 +254,11 @@ concat_output = concat_chain.run("colorful socks")
 print(f"Concatenated output:\n{concat_output}")
 ```
 
-## References
+## Acknowledgements
 
-Here are some resources that have been invaluable in the development of LangChain:
-
-- [LangChain Quickstart Guide](https://python.langchain.com/)
-- [OpenAI API Documentation](https://beta.openai.com/docs/)
-- [Hugging Face Model Hub](https://huggingface.co/models)
-- [GPT-3 Creative Applications](https://openai.com/blog/gpt-3-apps/)
-- [Hugging Face Transformers Documentation](https://huggingface.co/transformers/)
+- [LangChain](https://python.langchain.com/)
+- [Hugging Face](https://huggingface.co/)
+- [OpenAI](https://openai.com/)
+- [GPT-3](https://openai.com/blog/gpt-3-apps/)
+- [Multion API](https://api.multion.ai/)
+- [OpenAI API](https://beta.openai.com/docs/api-reference/introduction)
