@@ -6,7 +6,7 @@ LangChain now integrates with Multion API, enhancing its NLP application develop
 
 For detailed information, visit: [LangChain Introduction](https://python.langchain.com/docs/get_started/introduction).
 
-![LangChain Architecture Diagram](img/langchain_art.png)
+![LangChain Architecture Diagram](img/matryoshka_parrot.png)
 
 ## Workflow in LangChain
 
